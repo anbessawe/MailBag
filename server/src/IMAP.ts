@@ -76,7 +76,7 @@ export class Worker {
         return finalMessages;
         }
     
-        public async getMessageBody(inCallOptions: ICallOptions):Promise<string | undefined> {
+        public async getMessageBody(inCallOptions: ICallOptions):Promise<string> {
           const client: any = await this.connectToServer();
           const messages: any[] = await client.listMessages(
             inCallOptions.mailbox, inCallOptions.id,
@@ -84,17 +84,16 @@ export class Worker {
           );
           const parsed: ParsedMail = await simpleParser(messages[0]["body[]"]);
           await client.close();
-          return parsed.text
+          return parsed.text || "";
         }
 
-        public async deleteMessage(inCallOptions: ICallOptions):
-            Promise<any> {
+        public async deleteMessage(inCallOptions: ICallOptions):Promise<any> {
             const client: any = await this.connectToServer();
             await client.deleteMessages(
                 inCallOptions.mailbox, inCallOptions.id, { byUid : true }
             );
             await client.close();
-            }
+        }
 
 
 }

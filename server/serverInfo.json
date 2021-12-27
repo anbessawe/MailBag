@@ -8,5 +8,9 @@
     "host": "mail.mydomain.com",
     "port": 999,
     "auth": { "user": "user@domain.com", "pass": "xxx" }
+  },
+  "server": {
+    "host": "localhost",
+    "port": 8080
   }
 }

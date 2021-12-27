@@ -9,7 +9,11 @@ export interface IServerInfo {
     imap : {
       host: string, port: number,
       auth: { user: string, pass: string }
-  } 
+    },
+    server:{
+      host:string,
+      port:number
+    }
 }
   
 export let serverInfo: IServerInfo;
