@@ -39,7 +39,8 @@ const Contacts = __importStar(require("./Contacts"));
 const express = require("express");
 const app = express();
 const port = 8000;
-app.use(express.json);
+process.env.NODE_ENV = "Development";
+app.use(express.json());
 app.use("/", express.static(path_1.default.join(__dirname, "../../client/dist")));
 app.use(function (inRequest, inResponse, inNext) {
     inResponse.header("Access-Control-Allow-Origin", "*");

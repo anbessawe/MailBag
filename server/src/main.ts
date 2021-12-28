@@ -12,7 +12,9 @@ const express = require("express");
 const app: Express = express();
 const port = 8000;
 
-app.use(express.json);
+process.env.NODE_ENV = "Development";
+
+app.use(express.json());
 app.use("/", express.static(path.join(__dirname,"../../client/dist")))
 app.use(function(inRequest: Request, inResponse: Response, inNext:NextFunction){
     inResponse.header("Access-Control-Allow-Origin", "*");
