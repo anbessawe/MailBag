@@ -6,7 +6,7 @@ export function createState(inParentComponent) {
   return {
     
         //States
-        pleaseWaitVisisble:false,
+        pleaseWaitVisible:false,
         contacts:[],
         mailboxes:[],
         messages:[],
