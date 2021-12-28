@@ -9,7 +9,7 @@ export interface IContact{
 
 export class Worker{
 
-    public async listContacts() : Promise<IContact> {
+    public async listContacts() : Promise<IContact[]> {
         const response: AxiosResponse = await axios.get(`${config.serverAddress}/contacts`);
         return response.data;
     }

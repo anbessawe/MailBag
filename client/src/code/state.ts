@@ -1,7 +1,10 @@
 import * as IMAP from "./IMAP";
+import * as Contacts from "./Contacts";
 
 export function createState(inParentComponent) {
-    return {
+    
+  return {
+    
         //States
         pleaseWaitVisisble:false,
         contacts:[],
@@ -31,11 +34,10 @@ export function createState(inParentComponent) {
           }.bind(inParentComponent),
 
         addContactToList : function(inContact: Contacts.IContact): void {
-        const cl = this.state.contacts.slice(0);
-        cl.push({ _id : inContact._id,
-            name : inContact.name, email : inContact.email });
-        this.setState({ contacts : cl });
-        }.bind(inParentComponent)
+            const cl = this.state.contacts.slice(0);
+            cl.push({ _id : inContact._id, name : inContact.name, email : inContact.email });
+            this.setState({ contacts : cl });
+          }.bind(inParentComponent)
 
     }
 }
