@@ -31,20 +31,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const ServerInfo_1 = require("./ServerInfo");
 const IMAP = __importStar(require("./IMAP"));
 const SMTP = __importStar(require("./SMTP"));
 const Contacts = __importStar(require("./Contacts"));
-const app = (0, express_1.default)();
-const port = ServerInfo_1.serverInfo.server.port;
-app.use(express_1.default.json);
-app.use("/", express_1.default.static(path_1.default.join(__dirname, "../../client/dist")));
+const express = require("express");
+const app = express();
+const port = 8000;
+app.use(express.json);
+app.use("/", express.static(path_1.default.join(__dirname, "../../client/dist")));
 app.use(function (inRequest, inResponse, inNext) {
     inResponse.header("Access-Control-Allow-Origin", "*");
-    inResponse.header("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS");
-    inResponse.header("Access-Control-Allow-Headers", "Origin,X-Reqeusted-With,Content-Type,Accept");
+    inResponse.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+    inResponse.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     inNext();
 });
 app.get("/mailboxes", (inRequest, inResponse) => __awaiter(void 0, void 0, void 0, function* () {
@@ -135,7 +135,10 @@ app.delete("/contacts/:id", (inRequest, inResponse) => __awaiter(void 0, void 0,
         inResponse.send("error");
     }
 }));
+app.get("/Hello", (req, res) => {
+    res.send("Hello World!");
+});
 app.listen(port, () => {
-    console.log(`Started server on port:${port}`);
+    console.log(`app listening at http://localhost:${port}`);
 });
 //# sourceMappingURL=main.js.map

@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "compile": "npx tsc && node ./dist/main.js",
     "dev": "node ./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run compile\""

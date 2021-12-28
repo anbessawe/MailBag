@@ -1,4 +1,4 @@
-import express, {Express,NextFunction,Request,Response} from "express";
+import {Express,NextFunction,Request,Response} from "express";
 import path from "path";
 import { serverInfo } from "./ServerInfo";
 
@@ -8,15 +8,16 @@ import * as Contacts from "./Contacts";
 import { IContact } from "./Contacts"; 
 
 
-const app:Express = express();
-const port:number = serverInfo.server.port;
+const express = require("express");
+const app: Express = express();
+const port = 8000;
 
 app.use(express.json);
 app.use("/", express.static(path.join(__dirname,"../../client/dist")))
 app.use(function(inRequest: Request, inResponse: Response, inNext:NextFunction){
     inResponse.header("Access-Control-Allow-Origin", "*");
-    inResponse.header("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS");
-    inResponse.header("Access-Control-Allow-Headers", "Origin,X-Reqeusted-With,Content-Type,Accept");
+    inResponse.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+    inResponse.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     inNext();
 })
 
@@ -121,6 +122,10 @@ app.delete("/contacts/:id",
 } }
 );
 
-app.listen(port, ()=>{
-  console.log(`Started server on port:${port}`);
+app.get("/Hello", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`app listening at http://localhost:${port}`);
 });
